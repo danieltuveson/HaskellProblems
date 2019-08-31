@@ -17,9 +17,10 @@ maintainer:          danieltuveson@gmail.com
 extra-source-files:  CHANGELOG.md, README.md
 
 library
-  exposed-modules: Hw2.Log, Hw2.LogAnalysis
+  exposed-modules: Hw2.Log, Hw2.LogAnalysis, Hw3.Golf
   -- other-modules:
   -- other-extensions:
-  build-depends:       base ^>=4.12.0.0
+  build-depends:       base ^>=4.12.0.0, 
+                       safe >=0.3.17
   -- hs-source-dirs:
   default-language:    Haskell2010
