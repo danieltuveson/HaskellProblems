@@ -1,11 +1,7 @@
 module Hw3.Golf where 
 
--- import Safe (tailSafe)
 import Data.List
--- skips :: [a] -> [[a]]
--- skips [] = []
--- skips [x] = [[x]]
--- skips l@(_:xs) = l : skips (second l)
+
 
 -- Excercise 1 Hopscotch
 skips :: [a] -> [[a]]
