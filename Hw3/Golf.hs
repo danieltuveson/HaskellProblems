@@ -7,11 +7,22 @@ import Data.List
 -- skips [x] = [[x]]
 -- skips l@(_:xs) = l : skips (second l)
 
--- Exercise 2 Local maxima
+-- Excercise 1 Hopscotch
+skips :: [a] -> [[a]]
+skips ls = map (`getNth` indLs) [1..length ls]
+    where indLs = giveIndecies ls 
 
-second :: [a] -> [a]
-second (_ : x : xs) = x : second xs 
-second _ = []
+-- takes a list, returns the same list but with indecies starting from 1
+-- giveIndecies "abc" == [(1, 'a'), (2, 'b'), (3, 'c')]
+giveIndecies :: [a] -> [(Int, a)]
+giveIndecies ls = zip [1..length ls] ls
+
+-- given an int and a list, returns elements in a list whose index mod n == 0
+getNth :: Int -> [(Int, a)] -> [a]
+getNth n = map snd . filter (\(i, _) -> (i `mod` n) == 0) 
+
+
+-- Exercise 2 Local maxima
 
 localMaxima :: [Int] -> [Int]
 localMaxima (x : y : z : l) = [y | x < y && z < y] ++ localMaxima (y : z : l)
