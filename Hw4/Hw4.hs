@@ -32,6 +32,41 @@ hailstone x | even x = x `div` 2
             | otherwise = 3 * x + 1
 
 
+-- Exercise 2: Folding with trees
+
+data Tree a = Leaf
+            | Node Integer (Tree a) a (Tree a)
+            deriving (Show, Eq)
+
+-- turns a list of values into a balanced binary tree of values
+-- there's probably a much better solution for this but I'm tired of working on it :P
+foldTree :: [a] -> Tree a
+foldTree = foldr insertNode Leaf
+
+insertNode :: a -> Tree a -> Tree a
+insertNode x Leaf = Node 0 Leaf x Leaf
+insertNode x n
+    | height l > height r = updateHeights (Node h l y (insertNode x r))
+    | otherwise           = updateHeights (Node h (insertNode x l) y r)
+  where Node h l y r = updateHeights n
+
+
+-- Takes in a tree with incorrect height values at its nodes, and corrects them
+updateHeights :: Tree a -> Tree a
+updateHeights (Node _ l x r) = Node (1 + max (height l') (height r')) l' x r' 
+    where l' = updateHeights l
+          r' = updateHeights r
+updateHeights Leaf = Leaf
+
+-- returns the height of a tree. Leaves considered to have a height of -1 
+height :: Tree a -> Integer
+height Leaf           = -1
+height (Node _ l _ r) = 1 + max (height l) (height r)
+
+
+
+
+
 -- Exercise 3: More folds!
 
 -- returns true if there are an odd number of true values in input list, false otherwise
