@@ -17,7 +17,9 @@ maintainer:          danieltuveson@gmail.com
 extra-source-files:  CHANGELOG.md, README.md
 
 library
-  exposed-modules: Hw2.Log, Hw2.LogAnalysis, Hw3.Golf, Hw4.Hw4
+  exposed-modules: Hw2.Log, Hw2.LogAnalysis, Hw3.Golf, Hw4.Hw4, 
+                   Hw5.Calc, Hw5.ExprT, Hw5.Parser, Hw5.StackVM,
+                   Hw5.CalcExercise5, Hw6.Fibonacci.hs
   -- other-modules:
   -- other-extensions:
   build-depends:       base ^>=4.12.0.0, 
